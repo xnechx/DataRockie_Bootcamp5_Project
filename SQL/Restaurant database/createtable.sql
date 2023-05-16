@@ -1,0 +1,212 @@
+CREATE TABLE cashiers(
+  cashier_id int NOT NULL PRIMARY KEY,
+  cashier_name varchar(64),
+  parttime BOOLEAN
+);
+
+INSERT INTO cashiers VALUES
+  (1, 'Ann', 0),
+  (2, 'Joe', 0),
+  (3, 'Tong', 0),
+  (4, 'Sun', 0),
+  (5, 'Bob', 1),
+  (6, 'Will', 1),
+  (7, 'Alex', 0),
+  (8, 'Tom', 0);
+
+CREATE TABLE menus(
+  menu_id int NOT NULL PRIMARY KEY,
+  menu_name varchar(64),
+  menu_type varchar(64),
+  price numeric
+);
+
+INSERT INTO menus VALUES
+  (1, 'Tomyum Kung', 'food', 200),
+  (2, 'Fried Rice', 'food', 150),
+  (3, 'Pad Thai', 'food', 100),
+  (4, 'Som Tum', 'food', 80),
+  (5, 'Larb', 'food', 80),
+  (6, 'Green Curry', 'food', 100),
+  (7, 'Cooked rice', 'food', 50),
+  (8, 'Pad See Ew', 'food', 100),
+  (9, 'Soft drinks', 'beverage', 50),
+  (10, 'Drinking water', 'beverage', 30),
+  (11, 'Juice', 'beverage', 50),
+  (12, 'Tiramisu', 'dessert',80),
+  (13, 'Cheesecake', 'dessert', 80),
+  (14, 'Ice cream', 'dessert', 80);
+
+CREATE TABLE branches(
+  branch_id int NOT NULL PRIMARY KEY,
+  location varchar(64),
+  scale varchar(64) 
+);
+
+INSERT INTO branches VALUES
+  (1, "Paragon", "Large"),
+  (2, "Mega Bangna", "Medium"),
+  (3, "Pattaya", "Large");
+
+CREATE TABLE customers(
+  customer_id int NOT NULL PRIMARY KEY,
+  firstname varchar(64),
+  lastname varchar(64),
+  birthdate date,
+  gmail varchar(128)
+);
+
+INSERT INTO customers VALUES
+  (1, "Frame", "Lukamnun", "2000-04-23", "Frameprl@gmail.com"),
+  (2, "Liam", "Garcia", "1998-07-14", "LiamGarcia@yahoo.com"),
+  (3, "Olivia", "Martinez", "2001-01-03", "OMartinez@gmail.com"),
+  (4, "Ethan", "Lee", "1999-11-11", "EthanL@hotmail.com"),
+  (5, "Ava", "Rodriguez", "2003-08-08", "ARodriguez@gmail.com"),
+  (6, "Noah", "Nguyen", "2002-05-01", "NoahN@gmail.com"),
+  (7, "Sophia", "Kim", "2004-12-25", "SophiaKim@yahoo.com"),
+  (8, "Lucas", "Brown", "1997-09-17", "LucasB@gmail.com"),
+  (9, "Isabella", "Singh", "2005-06-30", "ISingh@hotmail.com"),
+  (10, "Aiden", "Patel", "2006-02-14", "AidenP@yahoo.com"),
+  (11, "Mia", "Gupta", "2007-10-07", "MiaGupta@gmail.com"),
+  (12, "Mason", "Shah", "1995-03-22", "MasonShah@hotmail.com"),
+  (13, "Charlotte", "Chen", "2008-09-05", "CharlotteChen@gmail.com"),
+  (14, "Jackson", "Wong", "1996-06-08", "JacksonWong@yahoo.com"),
+  (15, "Luna", "Chang", "2009-04-15", "LunaChang@gmail.com");
+
+CREATE TABLE orders(
+  order_id int NOT NULL PRIMARY KEY,
+  bill_id int,
+  menu_id int,
+  quantity int,
+  FOREIGN KEY (bill_id) REFERENCES bills(bill_id),
+  FOREIGN KEY (menu_id) REFERENCES menus(menu_id)
+);
+
+INSERT INTO orders VALUES
+  (1, 1, 3, 2),
+  (2, 1, 9, 2),
+  (3, 1, 12, 1),
+  (4, 2, 1, 1),
+  (5, 2, 4, 2),
+  (6, 2, 11, 1),
+  (7, 3, 2, 1),
+  (8, 3, 6, 1),
+  (9, 4, 8, 2),
+  (10, 4, 10, 3),
+  (11, 4, 14, 1),
+  (12, 5, 3, 1),
+  (13, 5, 7, 2),
+  (14, 6, 5, 3),
+  (15, 6, 9, 1),
+  (16, 6, 12, 1),
+  (17, 7, 1, 2),
+  (18, 7, 2, 1),
+  (19, 7, 8, 1),
+  (20, 8, 4, 1),
+  (21, 8, 6, 2),
+  (22, 9, 7, 1),
+  (23, 9, 10, 1),
+  (24, 9, 14, 2),
+  (25, 10, 3, 4),
+  (26, 10, 5, 4),
+  (27, 11, 6, 1),
+  (28, 11, 11, 2),
+  (29, 12, 9, 1),
+  (30, 12, 12, 1),
+  (31, 13, 1, 2),
+  (32, 13, 2, 1),
+  (33, 13, 5, 1),
+  (34, 14, 3, 1),
+  (35, 14, 4, 2),
+  (36, 14, 6, 1),
+  (37, 15, 7, 2),
+  (38, 15, 8, 1),
+  (39, 15, 9, 1),
+  (40, 16, 10, 2),
+  (41, 16, 11, 1),
+  (42, 16, 12, 1),
+  (43, 17, 1, 1),
+  (44, 17, 3, 1),
+  (45, 17, 10, 2),
+  (46, 18, 2, 1),
+  (47, 18, 4, 2),
+  (48, 18, 11, 1),
+  (49, 19, 5, 2),
+  (50, 19, 7, 1),
+  (51, 19, 12, 1),
+  (52, 20, 6, 2),
+  (53, 20, 8, 2),
+  (54, 20, 9, 1),
+  (55, 21, 1, 1),
+  (56, 21, 4, 2),
+  (57, 21, 11, 1),
+  (58, 22, 2, 2),
+  (59, 22, 3, 1),
+  (60, 22, 5, 1),
+  (61, 23, 6, 2),
+  (62, 23, 7, 1),
+  (63, 23, 12, 1),
+  (64, 24, 8, 2),
+  (65, 24, 9, 1),
+  (66, 24, 10, 1),
+  (67, 25, 1, 1),
+  (68, 25, 3, 1),
+  (69, 25, 5, 2),
+  (70, 26, 2, 1),
+  (71, 26, 4, 2),
+  (72, 26, 11, 1),
+  (73, 27, 6, 2),
+  (74, 27, 8, 2),
+  (75, 27, 9, 1),
+  (76, 28, 1, 1),
+  (77, 28, 4, 2),
+  (78, 28, 11, 1),
+  (79, 29, 2, 2),
+  (80, 29, 3, 1),
+  (81, 29, 5, 2),
+  (82, 30, 6, 2),
+  (83, 30, 7, 2),
+  (84, 30, 12, 1);      
+
+CREATE TABLE bills(
+  bill_id int NOT NULL PRIMARY KEY,
+  bill_date datetime,
+  customer_id int,
+  cashier_id int,
+  branch_id int,
+  FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+  FOREIGN KEY (cashier_id) REFERENCES cashiers(cashier_id),
+  FOREIGN KEY (branch_id) REFERENCES branches(branch_id)
+);
+
+INSERT INTO bills VALUES
+  (1, '2023-03-01 10:24:55', 15, 2, 1),
+  (2, '2023-03-01 10:44:15', 8, 7, 3),
+  (3, '2023-03-01 11:00:42', 3, 7, 3),
+  (4, '2023-03-01 11:29:19', 12, 2, 1),
+  (5, '2023-03-01 11:35:01', 9, 3, 2),
+  (6, '2023-03-01 12:09:30', 2, 2, 1),
+  (7, '2023-03-01 12:18:20', 1, 2, 1),
+  (8, '2023-03-01 12:25:50', 4, 3, 2),
+  (9, '2023-03-02 10:28:46', 7, 7, 3),
+  (10, '2023-03-02 10:35:14', 3, 2, 1),
+  (11, '2023-03-02 10:36:52', 5, 3, 2),
+  (12, '2023-03-02 11:01:15', 2, 2, 1),
+  (13, '2023-03-02 11:15:22', 6, 4, 2),
+  (14, '2023-03-02 11:20:55', 14, 1, 1),
+  (15, '2023-03-02 12:00:10', 13, 6, 3),
+  (16, '2023-03-02 12:15:54', 8, 5, 1),
+  (17, '2023-03-02 12:21:55', 9, 4, 2),
+  (18, '2023-03-03 10:36:35', 9, 5, 1),
+  (19, '2023-03-03 10:38:54', 3, 4, 2),
+  (20, '2023-03-03 10:55:30', 6, 1, 1),
+  (21, '2023-03-03 11:37:04', 7, 4, 2),
+  (22, '2023-03-03 11:40:40', 4, 8, 3),
+  (23, '2023-03-03 11:53:10', 10, 5, 1),
+  (24, '2023-03-03 12:04:50', 5, 4, 2),
+  (25, '2023-03-03 12:12:45', 2, 1, 1),
+  (26, '2023-03-03 12:31:41', 8, 4, 2),
+  (27, '2023-03-03 12:40:40', 11, 8, 3),
+  (28, '2023-03-03 12:45:47', 1, 5, 1),
+  (29, '2023-03-03 12:51:12', 14, 5, 2),
+  (30, '2023-03-03 13:02:20', 15, 1, 1);
